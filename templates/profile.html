@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% extends "layout.html" %}
+{% block content %}
+<h3>プロフィール</h3>
+
+{% for id in user_list %}
+<!-- 性別: {{ prof_dict[id].name }}でもできる。しかしい'.name'でなぜkey指定できるのか？ -->
+ID: {{ id }}<br>
+名前: {{ prof_dict[id]['name'] }}<br>
+年齢: {{ prof_dict[id]['age']  }}<br>
+性別: {{ prof_dict[id]['sex']  }}<br>
+edit/{{ id }}<br>
+url_for:{{ url_for("edit",id=id,query="parameter") }}<br>
+<a href="{{ url_for("edit",id=id) }}">プロフィールを編集する</a>
+<br><br>
+============================================
+<br>
+{% endfor %}
+
+{% endblock %}
+
+<!--
+<a href="edit/{{id}}">                  :url hard-coading ver.
+<a href="{{ url_for("edit",id=id) }}">  :url_for ver.  reverse lookupができる(view関数名からurlの検索)
+⬆url_forについて　️idはapp.pyのeditのパスパラメータにあるので、パスパラメータとして扱われる、ない場合はクエリパラメータとして扱われる。
+url_forの使用の方がおすすめ！
+
+i.e)
+app.py
+-------------------------
+@app.route('/edit')
+def edit_view():
+    hogehoge
+------------------------
+
+html
+------------------------
+hard-codeing ver. :   <a href="edit">
+url for ver.      :<a href="{{ url_for("edit_view") }}>
+-------------------------
+ -->
