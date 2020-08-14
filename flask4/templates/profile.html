@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>プロフィール</h3>
+{% for user in user %}
+<p>
+名前: {{ user.name }}
+年齢: {{ user.age }}
+性別: {{ user.sex }}
+
+<a href="/edit/{{user.id}}">プロフィールを編集する</a>
+
+</p>
+{% endfor %}
+{% endblock %}
+
+
+<!--
+<a href="edit/{{id}}">                  :url hard-coading ver.
+<a href="{{ url_for("edit",id=id) }}">  :url_for ver.  reverse lookupができる(view関数名からurlの検索)
+⬆url_forについて　️idはapp.pyのeditのパスパラメータにあるので、パスパラメータとして扱われる、ない場合はクエリパラメータとして扱われる。
+url_forの使用の方がおすすめ！
+
+i.e)
+app.py
+-------------------------
+@app.route('/edit')
+def edit_view():
+    hogehoge
+------------------------
+
+html
+------------------------
+hard-codeing ver. :   <a href="edit">
+url for ver.      :<a href="{{ url_for("edit_view") }}>
+-------------------------
+ -->
