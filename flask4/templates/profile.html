@@ -8,10 +8,11 @@
 年齢: {{ user.age }}
 性別: {{ user.sex }}
 
-<a href="/edit/{{user.id}}">プロフィールを編集する</a>
-
+<a href=" {{ url_for("edit",id=user.id) }} ">プロフィールを編集する</a>
+<a href=" {{ url_for("delete",id=user.id) }} ">プロフィールを削除する</a>
 </p>
 {% endfor %}
+<a href=" {{ url_for("add") }} ">プロフィールを追加する</a>
 {% endblock %}
 
 
